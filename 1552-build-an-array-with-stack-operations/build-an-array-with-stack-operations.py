@@ -1,11 +1,10 @@
 class Solution:
     def buildArray(self, target: List[int], n: int) -> List[str]:
         res = []
-        i = 1
+        old = 0
+        unit = ["Push", "Pop"]
         for n in target:
-            while i != n:
-                res.extend(["Push", "Pop"])
-                i+=1
+            if n > old + 1: res.extend( unit * (n-old-1))
             res.append("Push")
-            i+=1
+            old = n
         return res
