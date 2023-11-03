@@ -2,8 +2,7 @@ class Solution:
     def buildArray(self, target: List[int], n: int) -> List[str]:
         res = []
         old = 0
-        for n in target:
-            res.extend( ["Push", "Pop"] * (n-old))
+        for i in range(len(target)):
+            res.extend( ["Push", "Pop"] * (target[i]- (target[i-1] if i else 0) ))
             res.pop()
-            old = n
         return res
