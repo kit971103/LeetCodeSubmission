@@ -1,43 +1,38 @@
 class Solution:
     def highestRankedKItems(self, grid: List[List[int]], pricing: List[int], start: List[int], k: int) -> List[List[int]]:
         
-        width = len(grid[0])
-        height = len(grid)
-        visited = [ [False]*width for _ in range(height)]
+        self.grid = grid
+        self.width = len(self.grid[0])
+        self.height = len(self.grid)
+        self.visited = [ [False]*self.width for _ in range(self.height)]
+        
+        def diffuse(point, aset):
+            row, col = point
+            if row > 0 and self.grid[row-1][col]: aset.add( (row-1, col) )
+            if row < self.height-1 and self.grid[row+1][col]: aset.add( (row+1, col) )
+            if col > 0 and self.grid[row][col-1]: aset.add( (row, col-1) )
+            if col < self.width-1 and self.grid[row][col+1]: aset.add( (row, col+1) )
+        
         ans=[]
         queqe = [tuple(start)]
         count=0
         
         while queqe:
             
-            # print(f"before queqe, {queqe=}, {ans=}")
-            
             nextlayer = set()
             for point in queqe:
 
+                diffuse(point, nextlayer)
+
                 row, col = point
-                visited[row][col] = True
-                
-                if row > 0 and grid[row-1][col]: nextlayer.add( (row-1, col) )
-                if row < height-1 and grid[row+1][col]: nextlayer.add( (row+1, col) )
-                if col > 0 and grid[row][col-1]: nextlayer.add( (row, col-1) )
-                if col < width-1 and grid[row][col+1]: nextlayer.add( (row, col+1) )
-                
+                self.visited[row][col] = True
                 if pricing[0] <= grid[row][col] <= pricing[1]:
                     count += 1
-                    ans.append( point )
-            
-            # print(f"finished queqe, {ans=}, {count=}")
-            # print(f"visited=\n{visited}")
+                    ans.append(point)
             if count >= k: return ans[:k]
 
-            queqe = [ point for point in nextlayer if not visited[ point[0] ][ point[1] ]]
-
-            # print(f"before filtering, {nextlayer=}")
-            # print(f"before sorting queqe, {queqe=}")
-
-            queqe.sort( key  = lambda point: (grid[point[0]][point[1]], point[0], point[1]))
-            # print(f"after sorting queqe, {queqe=}\n\n")
+            queqe = [ point for point in nextlayer if not self.visited[ point[0] ][ point[1] ]]
+            queqe.sort( key  = lambda point: (self.grid[point[0]][point[1]], point[0], point[1]))
         return ans
 
 
