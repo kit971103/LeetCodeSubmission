@@ -4,8 +4,7 @@ class Solution:
         i = 1
         for n in target:
             while i != n:
-                res.append("Push")
-                res.append("Pop")
+                res.extend(["Push", "Pop"])
                 i+=1
             res.append("Push")
             i+=1
