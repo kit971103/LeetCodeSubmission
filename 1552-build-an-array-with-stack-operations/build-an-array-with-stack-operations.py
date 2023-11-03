@@ -3,7 +3,7 @@ class Solution:
         res = []
         old = 0
         for n in target:
-            if n > old + 1: res.extend( ["Push", "Pop"] * (n-old-1))
-            res.append("Push")
+            res.extend( ["Push", "Pop"] * (n-old))
+            res.pop()
             old = n
         return res
