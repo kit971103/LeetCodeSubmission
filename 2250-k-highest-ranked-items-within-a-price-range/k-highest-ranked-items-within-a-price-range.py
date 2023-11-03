@@ -13,6 +13,9 @@ class Solution:
             if col > 0 and self.grid[row][col-1]: aset.add( (row, col-1) )
             if col < self.width-1 and self.grid[row][col+1]: aset.add( (row, col+1) )
         
+        def unwrap(f):
+            return lambda args: f(*args)
+        
         ans=[]
         queqe = [tuple(start)]
         count=0
@@ -31,8 +34,8 @@ class Solution:
                     ans.append(point)
             if count >= k: return ans[:k]
 
-            queqe = [ point for point in nextlayer if not self.visited[ point[0] ][ point[1] ]]
-            queqe.sort( key  = lambda point: (self.grid[point[0]][point[1]], point[0], point[1]))
+            queqe = [ (row, col) for row, col in nextlayer if not self.visited[row][col] ]
+            queqe.sort( key  = unwrap(lambda row, col: (self.grid[row][col], row, col) ))
         return ans
 
 
