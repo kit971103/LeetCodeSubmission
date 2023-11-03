@@ -10,14 +10,13 @@ class Solution:
         
         for i in range(n):
             detonated = [False] * n
-            count = 0
             queqe = [i]
             while queqe:
                 j = queqe.pop()
                 if detonated[j]: continue
-                else: detonated[j] = True
-                count += 1
+                detonated[j] = True
                 queqe.extend(nearby[j])
+            count = sum(detonated)
             if count > max_detonate: max_detonate= count
 
         return max_detonate
