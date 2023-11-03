@@ -16,8 +16,7 @@ class Solution:
                 if detonated[j]: continue
                 detonated[j] = True
                 queqe.extend(nearby[j])
-            count = sum(detonated)
-            if count > max_detonate: max_detonate= count
+            max_detonate = max(max_detonate, sum(detonated))
 
         return max_detonate
 
