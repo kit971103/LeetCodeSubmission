@@ -29,7 +29,7 @@ class Solution:
             if cur_dirertion == "R": col += 1
             elif cur_dirertion == "D": row += 1
             elif cur_dirertion == "L": col -= 1
-            elif cur_dirertion == "U": row -= 1
+            else: row -= 1
 
         return ans
 
