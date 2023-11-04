@@ -13,34 +13,24 @@ class Solution:
             
             ans.append(matrix[row][col])
             
-            if cur_dirertion == "R":
-                if col < right_boundary: col += 1
-                else:
-                    up_boundary+=1
-                    cur_dirertion="D"
-                    row += 1
+            if cur_dirertion == "R" and col >= right_boundary:
+                up_boundary+=1
+                cur_dirertion="D"
+            elif cur_dirertion == "D" and row >= down_boundary:
+                right_boundary-=1
+                cur_dirertion="L"
+            elif cur_dirertion == "L" and col <= left_boundary:
+                down_boundary-=1
+                cur_dirertion="U"
+            elif cur_dirertion == "U" and row <= up_boundary:
+                left_boundary+=1
+                cur_dirertion="R"
             
-            elif cur_dirertion == "D":
-                if row < down_boundary: row += 1
-                else:
-                    right_boundary-=1
-                    cur_dirertion="L"
-                    col -= 1
-            
-            elif cur_dirertion == "L":
-                if left_boundary < col: col -= 1
-                else:
-                    down_boundary-=1
-                    cur_dirertion="U"
-                    row -= 1
-            
-            elif cur_dirertion == "U":
-                if up_boundary < row: row -= 1
-                else:
-                    left_boundary+=1
-                    cur_dirertion="R"
-                    col += 1
-        
+            if cur_dirertion == "R": col += 1
+            elif cur_dirertion == "D": row += 1
+            elif cur_dirertion == "L": col -= 1
+            elif cur_dirertion == "U": row -= 1
+
         return ans
 
 
