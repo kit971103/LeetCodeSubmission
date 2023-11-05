@@ -6,25 +6,23 @@ class Solution:
             cookies.sort()
             return max(cookies[0] + cookies[1], cookies[-1])
         
-        def distribute_ith_cookie(i):
-            nonlocal min_unfairness
-            if i == n:
-                min_unfairness = min(min_unfairness, max(children))
-                return
-            if len(children) < k:
-                children.append( cookies[i] )
-                distribute_ith_cookie(i+1)
-                children.pop()
-            for j in range(len(children)):
-                children[j] += cookies[i]
-                # if children[j] >= min_unfairness:
-                #     children[j] -= cookies[i]
-                #     return
-                distribute_ith_cookie(i+1)
-                children[j] -= cookies[i]
-
-        children = []
         min_unfairness = sum(cookies)
-        distribute_ith_cookie(0)
 
+        for base_case in itertools.combinations(range(len(cookies)), k):
+
+            remainning_cookies = [cookies[i] for i in range(len(cookies)) if i not in base_case]
+            base_case = [ cookies[i] for i in base_case ]
+
+            for distribution in itertools.product( range(k) , repeat = len(cookies) - k ):
+                
+                children = base_case.copy()
+                for i, cookiesLabel in enumerate(distribution): 
+                    children[cookiesLabel] += remainning_cookies[i]
+                
+                unfairness = max(children)
+                if unfairness < min_unfairness : min_unfairness = unfairness
+
+
+            print()
+                
         return min_unfairness
