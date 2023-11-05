@@ -1,0 +1,1 @@
+<h2>fair-distribution-of-cookies Notes</h2><hr>75.55, 27.95; old method but everyone at least have one cookies
