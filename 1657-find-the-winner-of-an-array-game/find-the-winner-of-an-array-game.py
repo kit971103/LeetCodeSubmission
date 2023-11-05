@@ -4,7 +4,8 @@ class Solution:
         
         winner = arr[0]
         win_count = 0
-        for n in arr[1:]:
+        for i in range(1, len(arr)):
+            n = arr[i]
             if winner > n: 
                 win_count+=1
                 if win_count == k: break
