@@ -1,0 +1,1 @@
+<h2>find-the-winner-of-an-array-game Notes</h2><hr>95.11, 85.33; same method, but without list slicing
