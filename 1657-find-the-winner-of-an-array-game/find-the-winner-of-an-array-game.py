@@ -1,7 +1,7 @@
 class Solution:
     def getWinner(self, arr: List[int], k: int) -> int:
-        if k >= len(arr)-1: return max(arr)
         if  k == 1: return max(arr[0], arr[1])
+        
         winner = arr[0]
         win_count = 0
         for n in arr[1:]:
