@@ -1,0 +1,1 @@
+<h2>seat-reservation-manager Notes</h2><hr>92.23 98.79; one less code and yet slower lol
