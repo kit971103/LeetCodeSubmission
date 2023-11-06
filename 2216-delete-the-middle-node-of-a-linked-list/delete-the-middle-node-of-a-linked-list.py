@@ -8,14 +8,14 @@ class Solution:
         
         if not head.next: return None
 
-        need_to_move = True
+        inedx = 1
         current = head.next
         before_middle = head
 
         while current.next:
             current = current.next
-            need_to_move = not need_to_move
-            if need_to_move: before_middle = before_middle.next
+            inedx+=1
+            if inedx%2: before_middle = before_middle.next
         
         before_middle.next = before_middle.next.next
 
