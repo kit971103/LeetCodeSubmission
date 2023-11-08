@@ -12,9 +12,9 @@ class Solution:
         
         for char in password:
             if char == last_char: return False
-            if not haveUpper and char in Upper: haveUpper = True
-            if not haveLower and char in Lower: haveLower = True
-            if not haveDigit and char in Digit: haveDigit = True
-            if not haveSpecChar and char in SpecChar: haveSpecChar = True
+            elif not haveUpper and char in Upper: haveUpper = True
+            elif not haveLower and char in Lower: haveLower = True
+            elif not haveDigit and char in Digit: haveDigit = True
+            elif not haveSpecChar and char in SpecChar: haveSpecChar = True
             last_char = char
         return haveUpper and haveLower and haveDigit and haveSpecChar
