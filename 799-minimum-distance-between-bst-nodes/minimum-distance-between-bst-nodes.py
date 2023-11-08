@@ -14,5 +14,5 @@ class Solution:
         dfs_Inorder(root)
         min_diff = alist[1] - alist[0]
         for a, b in itertools.pairwise(alist):
-            if (diff:=b-a) < min_diff: min_diff = diff
+            if (b-a) < min_diff: min_diff = b-a
         return min_diff
