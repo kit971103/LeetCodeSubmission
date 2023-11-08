@@ -10,10 +10,9 @@ class Solution:
             else: hh = 10
         else: hh = 1
 
-        if time[3] == "?" and time[4] == "?": mm = 60
-        elif time[3] == "?": mm = 6
-        elif time[4] == "?": mm = 10
-        else: mm = 1
+        mm=1
+        if time[3] == "?": mm*=6
+        if time[4] == "?": mm*=10
 
         return hh*mm
         
