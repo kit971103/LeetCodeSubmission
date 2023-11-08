@@ -1,1 +1,1 @@
-<h2>strong-password-checker-ii Notes</h2><hr>96.39, 95.33: easy
+<h2>strong-password-checker-ii Notes</h2><hr>used building, more pythic
