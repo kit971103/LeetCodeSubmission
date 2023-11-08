@@ -7,13 +7,11 @@
 class Solution:
     def minDiffInBST(self, root: Optional[TreeNode]) -> int:
         alist = []
-        queue = [root]
-        while queue:
-            node = queue.pop()
+        def dfs_Inorder(node):
+            if node.left: dfs_Inorder(node.left)
             alist.append(node.val)
-            if node.left: queue.append(node.left)
-            if node.right: queue.append(node.right)
-        alist.sort()
+            if node.right: dfs_Inorder(node.right)
+        dfs_Inorder(root)
         min_diff = alist[1] - alist[0]
         for a, b in itertools.pairwise(alist):
             if (diff:=b-a) < min_diff: min_diff = diff
