@@ -1,0 +1,1 @@
+<h2>count-number-of-homogenous-substrings Notes</h2><hr>96.48, 18.66; uses of bulid in itertools.groupby
