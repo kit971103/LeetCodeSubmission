@@ -59,14 +59,13 @@ class Solution:
         while not allInfected() and activeVirus():
 
             #idenify all region and find area
-            # visited = [ [False] * cols for _ in range(rows) ]
-            visited = copy.deepcopy(visited_void)
+            visited = [ [False] * cols for _ in range(rows) ]
             virus_location = [] #( area, (row,col))
             for location in itertools.product(range(rows), range(cols)):
                 row, col = location
                 if not visited[row][col] and isInfected[row][col] > 0:
                     
-                    visited_iter = copy.deepcopy(visited_void)
+                    visited_iter = [ [False] * cols for _ in range(rows) ]
                     area = 0
                     dfsFindReion(*location)
 
@@ -78,7 +77,7 @@ class Solution:
             # quarantine
             virus_location.sort()
             max_area, quarantine_reion = virus_location.pop()
-            visited = copy.deepcopy(visited_void)
+            visited = [ [False] * cols for _ in range(rows) ]
             dfsQuarantine(*quarantine_reion)
             turn-=1
             
@@ -89,7 +88,7 @@ class Solution:
             # print()
             
             # infect near by cell
-            visited = copy.deepcopy(visited_void)
+            visited = [ [False] * cols for _ in range(rows) ]
             for area, location in virus_location:
                 dfsInfect(*location)
             
