@@ -1,10 +1,7 @@
 class Solution:
     def slowestKey(self, releaseTimes: List[int], keysPressed: str) -> str:
-        newlist = []
-        old = 0
-        for t, c in zip(releaseTimes, keysPressed): 
-            newlist.append((t - old, c))
-            old = t
+        newlist = [(releaseTimes[i] - releaseTimes[i-1], keysPressed[i]) for i in range(1, len(releaseTimes))]
+        newlist.append((releaseTimes[0], keysPressed[0]))
         newlist.sort()
         return newlist[-1][1]
 
