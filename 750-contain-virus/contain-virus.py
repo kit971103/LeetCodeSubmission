@@ -1,18 +1,5 @@
 class Solution:
     def containVirus(self, isInfected: List[List[int]]) -> int:
-        # # debug
-        # print("INIT isInfected:")
-        # for row in isInfected: print("|".join([f"{n: >2}" for n  in row]))
-        # print()
-
-        def allInfected() -> bool:
-            for row, col in itertools.product(range(rows), range(cols)):
-                if isInfected[row][col] == 0: return False
-            return True
-        def activeVirus() -> bool:
-            for row, col in itertools.product(range(rows), range(cols)):
-                if isInfected[row][col] > 0 : return True
-            return False
         
         def dfsQuarantine(row, col):
             if not(0 <= row < rows) or not(0 <= col < cols) or visited[row][col] or isInfected[row][col] <= 0: return
@@ -37,7 +24,6 @@ class Solution:
                 nonlocal area
                 area += 1
 
-        
         def dfsInfect(row, col):
             if not(0 <= row < rows) or not(0 <= col < cols) or visited[row][col] or isInfected[row][col] < 0: return
             visited[row][col] = True
@@ -49,54 +35,37 @@ class Solution:
             else: 
                 isInfected[row][col] = 1
                 
-
-
         rows = len(isInfected)
         cols = len(isInfected[0])
         turn = -1
-        visited_void = [ [False] * cols for _ in range(rows) ]
 
-        while not allInfected() and activeVirus():
+        while True:
 
-            #idenify all region and find area
             visited = [ [False] * cols for _ in range(rows) ]
             virus_location = [] #( area, (row,col))
+            max_area = 0
             for location in itertools.product(range(rows), range(cols)):
                 row, col = location
-                if not visited[row][col] and isInfected[row][col] > 0:
-                    
+                if isInfected[row][col] > 0 and not visited[row][col]:
                     visited_iter = [ [False] * cols for _ in range(rows) ]
                     area = 0
                     dfsFindReion(*location)
+                    if area >= max_area:
+                        max_area = area
+                        quarantine_reion = location
+                    virus_location.append( location )
+            if len(virus_location) == 0: break
 
-                    virus_location.append((area, location))
-
-            # # debugger
-            # print(f"\n\n{virus_location=}")
-
-            # quarantine
-            virus_location.sort()
-            max_area, quarantine_reion = virus_location.pop()
             visited = [ [False] * cols for _ in range(rows) ]
             dfsQuarantine(*quarantine_reion)
             turn-=1
-            
-            # # debugger
-            # print(f"{quarantine_reion=}, {max_area=}")
-            # print("after quarantine, isInfected:")
-            # for row in isInfected: print("|".join([f"{n: >2}" for n  in row]))
-            # print()
-            
-            # infect near by cell
+            if len(virus_location) == 1: break
+
             visited = [ [False] * cols for _ in range(rows) ]
-            for area, location in virus_location:
+            for location in virus_location:
+                if location == quarantine_reion: continue
                 dfsInfect(*location)
-            
-            # print("after infect, isInfected:")
-            # for row in isInfected: print("|".join([f"{n: >2}" for n  in row]))
-            # print()
-        
-        #count walls
+
         count = 0
         for row in isInfected:
             for a,b in itertools.pairwise(row):
