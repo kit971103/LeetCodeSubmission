@@ -1,16 +1,5 @@
 class Solution:
     def numSpecialEquivGroups(self, words: List[str]) -> int:
-        aset = set()
-        for string in words:
-            even = []
-            odd = []
-            for i, c in enumerate(string):
-                if i%2: odd.append(c)
-                else: even.append(c)
-            even.sort()
-            odd.sort()
-            signature = "".join(even) + "-" + "".join(odd)
-            aset.add(signature)
-        return len(aset)
+        return len(set( "".join(sorted(string[::2])) + "".join(sorted(string[1::2])) for string in words))
 
         
