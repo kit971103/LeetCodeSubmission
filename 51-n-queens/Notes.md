@@ -1,0 +1,1 @@
+<h2>n-queens Notes</h2><hr>5.72, 96.18; O(n!) brute force
