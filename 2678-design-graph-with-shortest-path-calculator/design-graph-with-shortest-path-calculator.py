@@ -1,34 +1,31 @@
 class Graph:
 
     def __init__(self, n: int, edges: List[List[int]]):
-        self.nextNode = dict()
-        self.n = n
-        for i in range(n): 
-            self.nextNode[i] = []
+        
+        self.adj_list = [[] for _ in range(n)]
+
         for from_node, to_node, cost in edges:
-            self.nextNode[from_node].append((to_node, cost))
+            self.adj_list[from_node].append((to_node, cost))
 
     def addEdge(self, edge: List[int]) -> None:
         from_node, to_node, cost = edge
-        self.nextNode[from_node].append((to_node, cost))
+        self.adj_list[from_node].append((to_node, cost))
 
     def shortestPath(self, node1: int, node2: int) -> int:
-        min_cost = [float("inf")] * self.n
-        visited = [False] * self.n
-
-        visited[node1] = True
-        min_cost[node1] = 0
-        for each, cost in self.nextNode[node1]:
-            min_cost[each] = cost
         
-        while not visited[node2]:
-            alist = [(cost,i) for i, (cost, TF) in enumerate(zip(min_cost, visited)) if not TF]
-            _, node = min(alist)
-            visited[node] = True
-            for each, cost in self.nextNode[node]:
-                min_cost[each] = min(min_cost[each], min_cost[node] + cost)
+        min_cost = [ float("inf") ] * len(self.adj_list)
+        min_cost[node1] = 0
+        heap = [(0, node1)]
 
-        return min_cost[node2] if min_cost[node2] != float("inf") else -1
+        while heap:
+            precost, node = heappop(heap)
+            if node == node2: return precost
+            for neighbor, cost in self.adj_list[node]:
+                new_cost = precost + cost
+                if new_cost < min_cost[neighbor]:
+                    min_cost[neighbor] = new_cost
+                    heappush(heap, (new_cost, neighbor))
+        return -1
         
 
         
