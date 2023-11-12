@@ -1,1 +1,1 @@
-<h2>bus-routes Notes</h2><hr>53.74, 77.46; BFS with route as node, long and unpleasant code IMO
+<h2>bus-routes Notes</h2><hr>swaped target and source, not diff
