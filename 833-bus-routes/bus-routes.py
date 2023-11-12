@@ -1,36 +1,42 @@
 class Solution:
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        
         if source == target: return 0
+
+        routes_adj_list = []
         
-        source, target = target, source
-        
-        bus_in_stop = defaultdict(list)
-        
-        for bus, route in enumerate(routes):
-            for stop in route:
-                bus_in_stop[stop].append(bus)
-        
-        queue = bus_in_stop[source]
+        for i in range(len(routes)):
+            routes[i] = set(routes[i])
+            routes_adj_list.append(set())
+            for j in range(i):
+                for stop in routes[i]:
+                    if stop in routes[j]: 
+                        routes_adj_list[i].add(j)
+                        routes_adj_list[j].add(i)
+                        break
+            
         length = 1
-        visited_stop = {source}
-        visited_bus = set(queue)
+        target = set( i for i, route in enumerate(routes) if target in route)
+        queue = []
+        for i, route in enumerate(routes):
+            if source not in route: continue
+            if i in target: return length
+            queue.append(i)
+
+        seen = set(queue)
 
         while queue:
-            next_queue = []
-            for bus in queue:
-                for stop in routes[bus]:
-                    if stop in visited_stop: continue
-                    if stop == target: return length
-                    visited_stop.add(stop)
-                    for next_bus in bus_in_stop[stop]:
-                        if next_bus not in visited_bus:
-                            visited_bus.add(next_bus)
-                            next_queue.append(next_bus)
-            queue = next_queue.copy()
-            length+=1
+            new_queue = []
+            length += 1
+            for route in queue:
+                for neighbour in routes_adj_list[route]:
+                    if neighbour not in seen: 
+                        if neighbour in target: return length
+                        new_queue.append(neighbour)
+                        seen.add(neighbour)
+            queue = new_queue.copy()
         return -1
-                    
-                    
+
 
 
 
