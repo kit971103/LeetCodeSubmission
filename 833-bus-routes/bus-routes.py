@@ -16,11 +16,11 @@ class Solution:
                         routes_adj_list[j].add(i)
 
         length = 1
-        target = set( i for i, route in enumerate(routes) if target in route)
+        source = set( i for i, route in enumerate(routes) if source in route)
         queue = []
         for i, route in enumerate(routes):
-            if source not in route: continue
-            if i in target: return length
+            if target not in route: continue
+            if i in source: return length
             queue.append(i)
 
         seen = set(queue)
@@ -31,7 +31,7 @@ class Solution:
             for route in queue:
                 for neighbour in routes_adj_list[route]:
                     if neighbour not in seen: 
-                        if neighbour in target: return length
+                        if neighbour in source: return length
                         new_queue.append(neighbour)
                         seen.add(neighbour)
             queue = new_queue.copy()
