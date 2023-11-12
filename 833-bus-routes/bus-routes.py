@@ -2,6 +2,8 @@ class Solution:
     def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
         if source == target: return 0
         
+        source, target = target, source
+        
         bus_in_stop = defaultdict(list)
         
         for bus, route in enumerate(routes):
