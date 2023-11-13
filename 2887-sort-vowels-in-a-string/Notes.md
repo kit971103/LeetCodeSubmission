@@ -1,1 +1,1 @@
-<h2>sort-vowels-in-a-string Notes</h2><hr>98.51, 70.06; not storing the position
+<h2>sort-vowels-in-a-string Notes</h2><hr>used set for vowels check, 
