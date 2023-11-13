@@ -1,6 +1,6 @@
 class Solution:
     def sortVowels(self, s: str) -> str:
-        isVOWELS ="aeiouAEIOU"
+        isVOWELS = set("aeiouAEIOU")
         vowels = [ c for c in s if c in isVOWELS]
         if not vowels: return s
 
