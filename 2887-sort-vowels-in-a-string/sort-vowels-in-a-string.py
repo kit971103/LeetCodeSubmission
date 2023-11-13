@@ -5,10 +5,6 @@ class Solution:
         if not vowels: return s
 
         vowels.sort(reverse = True)
-        t = []
-
-        for c in s:
-            if c not in isVOWELS: t.append(c)
-            else: t.append(vowels.pop())
+        t = [ c if c not in isVOWELS else vowels.pop() for c in s]
 
         return "".join(t)
