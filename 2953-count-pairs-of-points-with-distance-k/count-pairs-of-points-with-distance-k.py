@@ -5,18 +5,12 @@ class Solution:
         hasmap = collections.Counter()
         
        
-        for point in coordinates:
-            
-            point = tuple(point)
-            x1, y1 = point
+        for x1, y1 in coordinates:
             
             for x in range(k+1):
-                target = (x1^x, y1^(k-x))
-                if target in hasmap: 
-                    c += hasmap[target]
+                c += hasmap[ x1^x, y1^(k-x) ]
             
-            if point in hasmap: hasmap[point]+=1
-            else: hasmap[point] = 1    
+            hasmap[x1, y1]+=1   
         
         return c
         
