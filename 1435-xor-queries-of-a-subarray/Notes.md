@@ -1,0 +1,1 @@
+<h2>xor-queries-of-a-subarray Notes</h2><hr>59.59, 24.49; used acc_xor help array
