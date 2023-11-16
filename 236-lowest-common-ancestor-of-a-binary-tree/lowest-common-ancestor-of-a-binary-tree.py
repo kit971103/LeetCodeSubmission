@@ -7,29 +7,33 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        def dfs(node):
+        def dfs(node) -> tuple:
             
-            if not node: return
-            nonlocal p_path
-            nonlocal q_path
-            path.append(node)
-            if node == p: 
-                p_path = path.copy()
-            if node == q: 
-                q_path = path.copy()
-            if p_path is not None and q_path is not None: return
-            dfs(node.left)
-            dfs(node.right)
-            path.pop()
+            if not node: return (False, False)
+            
+            p_in_this = q_in_this = False
+            p_in_L_subtree, q_in_L_subtree = dfs(node.left)
+            p_in_R_subtree, q_in_R_subtree = dfs(node.right)
 
-        path = []
-        p_path = None
-        q_path = None
+            if node == p or p_in_L_subtree or p_in_R_subtree: 
+                p_in_this = True
+            if node == q or q_in_L_subtree or q_in_R_subtree: 
+                q_in_this = True
+            
+            nonlocal CommonAncestor
+            if p_in_this and q_in_this and CommonAncestor is None: 
+                CommonAncestor = node
+            
+            return (p_in_this, q_in_this)
+
+
+
+
+            
+
+            
+        CommonAncestor = None
         dfs(root)
         
-        # CommonAncestor = root
-        for a, b in zip(p_path, q_path):
-            if a != b: break
-            CommonAncestor = a
         return CommonAncestor
 
