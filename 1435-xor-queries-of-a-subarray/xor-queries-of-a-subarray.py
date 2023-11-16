@@ -1,16 +1,7 @@
 class Solution:
     def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
-        mem = dict()
-        res = []
-        for left, right in queries:
-            if (left, right) not in mem:
-                ans = 0
-                for n in range(left, right+1):
-                    ans ^= arr[n]
-                res.append(ans)
-                mem[(left, right)] = ans
-            else: res.append( mem[(left, right)] )
-        return res
+        acc_arr = [ n for n in itertools.accumulate(arr, func = operator.xor)]
+        return [ (acc_arr[left-1] if left else 0)^acc_arr[right] for left, right in queries]
 
 
         
