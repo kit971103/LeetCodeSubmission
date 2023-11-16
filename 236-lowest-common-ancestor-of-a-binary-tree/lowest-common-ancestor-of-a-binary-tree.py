@@ -8,10 +8,10 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         def dfs(node):
+            
+            if not node: return
             nonlocal p_path
             nonlocal q_path
-            if not node or (p_path is not None and q_path is not None): return
-
             path.append(node)
             if node == p: 
                 p_path = path.copy()
