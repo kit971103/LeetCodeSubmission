@@ -3,10 +3,10 @@ class Solution:
         
         count = Counter(nums)
         
-        # res = []
-        # for n in count:
-        #     if count[n] == 1 and n-1 noy in count and n+1 not in count: res.append(n)
+        res = []
+        for n in count:
+            if count[n] == 1 and n-1 not in count and n+1 not in count: res.append(n)
 
-        # return res
-        return [ n for n in count if count[n] == 1 and n-1 not in count and n+1 not in count]
+        return res
+        # return [ n for n in count if count[n] == 1 and n-1 not in count and n+1 not in count]
         
