@@ -1,12 +1,15 @@
 class Solution:
     def reductionOperations(self, nums: List[int]) -> int:
-        count = sorted(Counter(nums).items(), reverse = True)
-        print(count)
-        acc = 0
-        res = 0
-        for val, freq in count:
-            acc += freq
-            res += acc
-        res -= acc
+        nums.sort(reverse = True)
+        smallest  = nums[-1]
+        res = level = 0
+        for i in range(len(nums)-1):
+            if nums[i] == smallest: return res
+            level += 1
+            if nums[i] != nums[i+1]:
+                res+=level
         return res
+
+
+
 
