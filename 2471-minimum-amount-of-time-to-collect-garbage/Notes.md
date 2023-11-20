@@ -1,1 +1,1 @@
-<h2>minimum-amount-of-time-to-collect-garbage Notes</h2><hr>97.85, 34.21; how come this is so fast
+<h2>minimum-amount-of-time-to-collect-garbage Notes</h2><hr>92.23, 83.14; 
