@@ -1,7 +1,12 @@
 class Solution:
     def countNicePairs(self, nums: List[int]) -> int:
         def f(x):
-            return x-int(str(x)[::-1])
+            z = x
+            y = 0
+            while z:
+                y = y * 10 + z%10
+                z//=10
+            return x-y
         count = Counter(f(n) for n in nums)
         res = 0
         for _, freq in count.items():
