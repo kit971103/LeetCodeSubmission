@@ -7,25 +7,26 @@
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         
-        level = deque([root])
+        level = [root]
         max_level_idx = level_idx = 1
         max_level_sum = root.val
 
         while level:
             
-            length = len(level)
+            next_level =[]
             level_sum = 0
             
-            for _ in range(length):
-                node = level.popleft()
+            for node in level:
                 level_sum += node.val
-                if node.left: level.append(node.left)
-                if node.right: level.append(node.right)
+                if node.left: next_level.append(node.left)
+                if node.right: next_level.append(node.right)
             
             if level_sum > max_level_sum: 
                 max_level_sum = level_sum
                 max_level_idx = level_idx
             level_idx+=1
+
+            level = next_level.copy()
         
         return max_level_idx
 
