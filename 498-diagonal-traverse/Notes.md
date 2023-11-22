@@ -1,0 +1,1 @@
+<h2>diagonal-traverse Notes</h2><hr>10.87, 49.57; why its slower?
