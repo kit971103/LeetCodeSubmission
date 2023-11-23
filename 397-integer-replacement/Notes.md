@@ -1,0 +1,1 @@
+<h2>integer-replacement Notes</h2><hr>70.34, 6.17. added functools.cache decarotor
