@@ -1,4 +1,5 @@
 class Solution:
+    @functools.cache
     def integerReplacement(self, n: int) -> int:
         if n == 1: return 0
         if n%2:
