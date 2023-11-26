@@ -4,11 +4,7 @@ class Solution:
         for col in range(len(matrix[0])):
             count = 0
             for row in range(len(matrix)):
-                
-                if matrix[row][col]:
-                    count += 1
-                else:
-                    count = 0
+                count = count + 1 if matrix[row][col] else 0
                 matrix[row][col] = count
 
         max_area = 0
