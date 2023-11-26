@@ -17,8 +17,6 @@ class Solution:
         max_area = 0
         visited = [ [False] * cols for _ in range(rows)]
         for row, col in itertools.product(range(rows), range(cols)):
-            if visited[row][col]: 
-                continue
             area = 0
             bfs(row, col)
             if area > max_area: max_area = area
