@@ -14,9 +14,7 @@ class Solution:
         max_area = 0
         for row in matrix:
             row.sort(reverse = True)
-            for length, height in enumerate(row,1):
-                if length * height > max_area: max_area = length * height
-            # max_area = max(max_area, *(length * height for length, height in enumerate(row,1)))
+            max_area = max(max_area, *(length * height for length, height in enumerate(row,1)))
         return max_area
 
 
