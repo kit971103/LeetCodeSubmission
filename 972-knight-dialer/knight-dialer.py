@@ -3,6 +3,7 @@ class Solution:
         # posible_move = [(4,6), (6,8), (7,9), (4,8), (0, 3,9),  tuple(), (0, 1,7), (2,6), (1,3), (2,4), (4,6) ]
 
         posible_numbers_end_with = [1] * 10
+        if n != 1: posible_numbers_end_with[5] = 0
         mod = 10**9+7
         for _ in range(n-1):
             temp_store = posible_numbers_end_with.copy()
@@ -12,7 +13,7 @@ class Solution:
             posible_numbers_end_with[2] = (temp_store[7] + temp_store[9])%mod
             posible_numbers_end_with[3] = (temp_store[4] + temp_store[8])%mod
             posible_numbers_end_with[4] = (temp_store[0] + temp_store[3] + temp_store[9])%mod
-            posible_numbers_end_with[5] = 0
+            # posible_numbers_end_with[5] = 0
             posible_numbers_end_with[6] = (temp_store[0] + temp_store[1] + temp_store[7])%mod
             posible_numbers_end_with[7] = (temp_store[2] + temp_store[6])%mod
             posible_numbers_end_with[8] = (temp_store[1] + temp_store[3])%mod
