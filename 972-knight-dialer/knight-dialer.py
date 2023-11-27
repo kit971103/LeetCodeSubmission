@@ -5,8 +5,6 @@ class Solution:
         posible_numbers_end_with = [1] * 10
         mod = 10**9+7
         for _ in range(n-1):
-            last_iter = posible_numbers_end_with.copy()
-            for i in range(10):
-                posible_numbers_end_with[i] = sum(last_iter[j] for j in posible_move[i])
+            posible_numbers_end_with = [ sum(posible_numbers_end_with[j] for j in posible_move[i])%mod for i in range(10)]
 
         return sum(posible_numbers_end_with)%mod
