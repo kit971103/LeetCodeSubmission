@@ -1,0 +1,1 @@
+<h2>knight-dialer Notes</h2><hr>used loop for calculation, more readble IMO. but much much solwer
