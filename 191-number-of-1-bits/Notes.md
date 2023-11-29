@@ -1,0 +1,1 @@
+<h2>number-of-1-bits Notes</h2><hr>96.85, 32.07; bit shift and count
