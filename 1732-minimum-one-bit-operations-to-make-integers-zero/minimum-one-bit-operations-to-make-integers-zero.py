@@ -1,7 +1,9 @@
 class Solution:
     def minimumOneBitOperations(self, n: int) -> int:
-        if n == 0: return 0
-        length = math.floor(math.log(n, 2))+1
+        try:
+            length = math.floor(math.log(n, 2))+1
+        except:
+            return 0
         res = count = 0
         for i in range(length, -1, -1):
             if n & (1 << i):
