@@ -1,0 +1,1 @@
+<h2>minimum-time-visiting-all-points Notes</h2><hr>with out build in itertools.
