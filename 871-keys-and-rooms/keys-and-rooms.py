@@ -1,14 +1,15 @@
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        keys = set(rooms[0])
-        rooms[0] = None
-        while keys:
-            next_keys = set()
+        def dfs(keys):
             for key in keys:
-                if rooms[key] is not None:
-                    next_keys.update(rooms[key])
-                    rooms[key] = None
-            keys = next_keys
-        return  all(map(lambda x: x is None, rooms))
+                if not visited[key]:
+                    visited[key] = True
+                    dfs(rooms[key])
+        visited = [False] * len(rooms)
+        visited[0] = True
+        dfs(rooms[0])
+        return all(visited)
+
+
 
         
