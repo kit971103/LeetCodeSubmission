@@ -9,9 +9,6 @@ class Solution:
                     next_keys.update(rooms[key])
                     rooms[key] = None
             keys = next_keys
-        for room in rooms:
-            if room is not None:
-                return False
-        return True
+        return  all(map(lambda x: x is None, rooms))
 
         
