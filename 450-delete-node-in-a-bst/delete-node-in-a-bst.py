@@ -21,11 +21,11 @@ class Solution:
             root = root.left
             return root
         else:
-            succ_parent = root
-            succ = root.right
+            succ_parent, succ = root, root.right
             while succ.left is not None:
                 succ_parent = succ
                 succ = succ.left
+            
             if succ_parent!= root:
                 succ_parent.left = succ.right
             else:
@@ -34,6 +34,7 @@ class Solution:
             root.val = succ.val
 
             del succ
+            
             return root
 
 
