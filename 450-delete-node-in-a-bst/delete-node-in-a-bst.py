@@ -7,21 +7,18 @@
 class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         if root is None:
-            return root
+            pass
         elif root.val < key:
             root.right = self.deleteNode(root.right, key)
-            return root
         elif root.val > key:
             root.left =  self.deleteNode(root.left, key)
-            return root
         elif root.left is None:
-            root = root.right
-            return root
+            return root.right
         elif root.right is None:
-            root = root.left
-            return root
+            return root.left
         else:
             succ_parent, succ = root, root.right
+            
             while succ.left is not None:
                 succ_parent = succ
                 succ = succ.left
@@ -34,8 +31,7 @@ class Solution:
             root.val = succ.val
 
             del succ
-            
-            return root
+        return root
 
 
             
