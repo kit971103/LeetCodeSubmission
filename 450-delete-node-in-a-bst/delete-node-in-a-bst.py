@@ -17,20 +17,12 @@ class Solution:
         elif root.right is None:
             return root.left
         else:
-            succ_parent, succ = root, root.right
-            
+            succ = root.right
             while succ.left is not None:
-                succ_parent = succ
                 succ = succ.left
-            
-            if succ_parent!= root:
-                succ_parent.left = succ.right
-            else:
-                succ_parent.right = succ.right
-            
             root.val = succ.val
+            root.right = self.deleteNode(root.right, root.val)
 
-            del succ
         return root
 
 
