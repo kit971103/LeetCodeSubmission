@@ -1,4 +1,8 @@
 class Solution:
     def findSpecialInteger(self, arr: List[int]) -> int:
-        return Counter(arr).most_common(1)[0][0]
+        step = len(arr)//4
+        for i, n in enumerate(arr):
+            if n == arr[i+step]:
+                return n
+        return None
         
