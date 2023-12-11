@@ -1,0 +1,1 @@
+<h2>element-appearing-more-than-25-in-sorted-array Notes</h2><hr>75.32, 59.65
