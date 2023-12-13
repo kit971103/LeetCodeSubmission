@@ -1,1 +1,1 @@
-<h2>special-positions-in-a-binary-matrix Notes</h2><hr>[ Time taken: 14 m 5 s ]
+<h2>special-positions-in-a-binary-matrix Notes</h2><hr>95.72, 33.33; modified solution
