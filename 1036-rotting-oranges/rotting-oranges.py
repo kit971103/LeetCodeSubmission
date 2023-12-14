@@ -11,11 +11,22 @@ class Solution:
             for row, col in product(range(rows), range(cols)):
                 if not checked[row][col] and not visited[row][col] and grid[row][col] == 2:
                     checked[row][col] = True
-                    for dy, dx in ((+1, 0), (-1,0), (0, +1), (0, -1)):
-                        if 0 <= row+dy <rows and 0 <= col+dx < cols and grid[row+dy][col+dx] == 1:
-                            count += 1
-                            grid[row+dy][col+dx] = 2
-                            visited[row+dy][col+dx] = True
+                    if 0 < row and grid[row-1][col] == 1:
+                        count += 1
+                        grid[row-1][col] = 2
+                        visited[row-1][col] = True
+                    if row+1 < rows and grid[row+1][col] == 1:
+                        count += 1
+                        grid[row+1][col] = 2
+                        visited[row+1][col] = True
+                    if 0 < col and grid[row][col-1] == 1:
+                        count += 1
+                        grid[row][col-1] = 2
+                        visited[row][col-1] = True
+                    if col+1 < cols and grid[row][col+1] == 1:
+                        count += 1
+                        grid[row][col+1] = 2
+                        visited[row][col+1] = True
 
         for row, col in product(range(rows), range(cols)):
             if grid[row][col] == 1:
