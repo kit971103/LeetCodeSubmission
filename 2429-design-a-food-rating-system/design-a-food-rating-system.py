@@ -9,10 +9,7 @@ class FoodRatings:
         for food, cuisine, rating in zip(foods, cuisines, ratings):
             entry = [-rating, food, False]
             self.mapper[food] = (entry, cuisine)
-            self.priority_queue[cuisine].append(entry)
-        
-        for cuisine in self.priority_queue:
-            heapq.heapify(self.priority_queue[cuisine])
+            heapq.heappush(self.priority_queue[cuisine], entry)
 
     def changeRating(self, food: str, newRating: int) -> None:
         entry, cuisine = self.mapper[food]
