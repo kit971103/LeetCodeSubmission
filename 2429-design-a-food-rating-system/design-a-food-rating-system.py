@@ -6,10 +6,8 @@ class FoodRatings:
         
         self.mapper = dict() #see https://docs.python.org/3/library/heapq.html, about Priority Queue Implementation.
         self.priority_queue = defaultdict(list)
-        self.id_counter = itertools.count(1)
         for food, cuisine, rating in zip(foods, cuisines, ratings):
-            id_ = next(self.id_counter)
-            entry = [-rating, food, id_]
+            entry = [-rating, food, False]
             self.mapper[food] = (entry, cuisine)
             self.priority_queue[cuisine].append(entry)
         
@@ -18,14 +16,13 @@ class FoodRatings:
 
     def changeRating(self, food: str, newRating: int) -> None:
         entry, cuisine = self.mapper[food]
-        entry[2] = 0
-        id_ = next(self.id_counter)
-        newentry = [-newRating, food, id_]
+        entry[2] = True
+        newentry = [-newRating, food, False]
         self.mapper[food] = (newentry, cuisine)
         heapq.heappush(self.priority_queue[cuisine], newentry)
 
     def highestRated(self, cuisine: str) -> str:
-        while self.priority_queue[cuisine][0][2] == 0:
+        while self.priority_queue[cuisine][0][2]:
             heapq.heappop(self.priority_queue[cuisine])
         return self.priority_queue[cuisine][0][1]
         
