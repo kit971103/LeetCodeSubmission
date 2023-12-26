@@ -1,17 +1,13 @@
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        def is_updatable(update, traget, index):
-            for i, a, b in zip(itertools.count(), update, traget):
-                if (i!=index and a > b) or (i==index and a != b):
-                    return False
-            return True
-
         found = [False]*3
+        x,y,z = target
 
-        for triplet in triplets:
-            for i in range(3):
-                if not found[i] and is_updatable(triplet, target , i):
-                    found[i] = True
-
+        for a,b,c in triplets:
+            if not found[0] and x==a and y>=b and z>=c:
+                found[0] = True
+            if not found[1] and x>=a and y==b and z>=c:
+                found[1] = True
+            if not found[2] and x>=a and y>=b and z==c:
+                found[2] = True
         return all(found)
-        
