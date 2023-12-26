@@ -1,1 +1,1 @@
-<h2>merge-triplets-to-form-target-triplet Notes</h2><hr>[ Time taken: 12 m 24 s ]
+<h2>merge-triplets-to-form-target-triplet Notes</h2><hr>99.79, 5.3;
