@@ -6,17 +6,12 @@ class Solution:
                     return False
             return True
 
-
-        
         found = [False]*3
 
         for triplet in triplets:
-            if not found[0] and is_updatable(triplet, target , 0):
-                found[0] = True
-            if not found[1] and is_updatable(triplet, target , 1):
-                found[1] = True
-            if not found[2] and is_updatable(triplet, target , 2):
-                found[2] = True
-        
+            for i in range(3):
+                if not found[i] and is_updatable(triplet, target , i):
+                    found[i] = True
+
         return all(found)
         
