@@ -4,11 +4,6 @@ class Solution:
 
         for x in range(len(colors) - 1):
             if colors[x] == colors[x + 1]:
-                if neededTime[x] < neededTime[x+1]:
-                    timeSum += neededTime[x]
-                else:
-                    timeSum += neededTime[x+1]
-                    neededTime[x+1] = neededTime[x]
-        #  print(timeSum)
-        
+                timeSum+= min(neededTime[x],neededTime[x+1])
+                neededTime[x+1] = max(neededTime[x],neededTime[x+1])
         return timeSum
