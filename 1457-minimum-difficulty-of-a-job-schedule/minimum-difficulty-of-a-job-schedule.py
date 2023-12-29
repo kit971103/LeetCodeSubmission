@@ -1,34 +1,28 @@
 class Solution:
     def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
+        if d > len(jobDifficulty): 
+            return -1
         
         @cache
         def dp(end, d):
-            # print(f"{end= }, {d= }")
-            if d > end : 
-                # print(None)
-                return None
-            elif d == end:
-                # print(sum(jobDifficulty[:end]))
+            if d == end:
                 return sum(jobDifficulty[:end])
-            
-            if d == 1:
-                # print(max(jobDifficulty[:end]))
+            elif d == 1:
                 return max(jobDifficulty[:end])
 
-            res = None
+            res = defalut
             for start in range(d-1,end):
                 left = dp(start, d-1)
                 if left is None:
                     continue
-                right = max(jobDifficulty[start:end])
-                t = left + right
-                if (res is None) or(t < res):
+                t = left + max(jobDifficulty[start:end])
+                if t < res:
                     res = t
-            # print(res)
             return res
         
+        defalut = sum(jobDifficulty)
         ans = dp(len(jobDifficulty), d)
 
-        return ans if ans is not None else -1
+        return ans
 
         
