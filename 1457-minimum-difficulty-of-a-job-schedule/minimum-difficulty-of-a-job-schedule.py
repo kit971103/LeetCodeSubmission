@@ -12,10 +12,7 @@ class Solution:
 
             res = defalut
             for start in range(d-1,end):
-                left = dp(start, d-1)
-                if left is None:
-                    continue
-                t = left + max(jobDifficulty[start:end])
+                t = dp(start, d-1) + max(jobDifficulty[start:end])
                 if t < res:
                     res = t
             return res
