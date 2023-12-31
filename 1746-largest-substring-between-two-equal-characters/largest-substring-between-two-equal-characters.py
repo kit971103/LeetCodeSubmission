@@ -4,7 +4,8 @@ class Solution:
         res = -1
         for i, c in enumerate(s):
             if c in seen:
-                if (t:=i-seen[c]-1) > res: 
+                t = i-seen[c]-1
+                if t > res: 
                     res = t
             else:
                 seen[c] = i
