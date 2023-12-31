@@ -4,7 +4,8 @@ class Solution:
         res = -1
         for i, c in enumerate(s):
             if c in seen:
-                res = max(res, i-seen[c]-1)
+                if (t:=i-seen[c]-1) > res: 
+                    res = t
             else:
                 seen[c] = i
         return res
