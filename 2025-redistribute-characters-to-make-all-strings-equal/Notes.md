@@ -1,0 +1,1 @@
+<h2>redistribute-characters-to-make-all-strings-equal Notes</h2><hr>73.9; bad. Not using build in iter.chain faaster
