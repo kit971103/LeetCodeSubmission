@@ -3,9 +3,10 @@ class Solution:
         count = Counter()
         res = []
         for n in nums:
-            if len(res) <= count[n]:
+            k = count[n]
+            if len(res) <= k:
                 res.append([])
-            res[count[n]].append(n)
+            res[k].append(n)
             count[n]+=1
         return res
 
