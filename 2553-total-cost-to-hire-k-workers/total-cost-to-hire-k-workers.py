@@ -1,33 +1,28 @@
 class Solution:
-    def totalCost(self, costs: List[int], k: int, candidates: int) -> int:
-        if candidates >= len(costs)/2:
-            costs.sort()
-            return sum(costs[:k])
-        
-        res = 0
-        minheap = []
-        l, r = candidates, len(costs)-candidates-1
-        
-        for i in range(candidates):
-            minheap.append( (costs[i], 0) )
-            minheap.append( (costs[-i-1], 1) )
-        
-        heapq.heapify(minheap)
-        
-        for _ in range(k):
+    def totalCost(self, costs, k, candidates):
+        i = 0
+        j = len(costs) - 1
+        pq1 = []
+        pq2 = []
 
-            n, L_bool = heapq.heappop(minheap)
-            res += n
+        ans = 0
+        while k > 0:
+            while len(pq1) < candidates and i <= j:
+                heapq.heappush(pq1, costs[i])
+                i += 1
+            while len(pq2) < candidates and i <= j:
+                heapq.heappush(pq2, costs[j])
+                j -= 1
 
-            if l > r:
-                continue
-            if L_bool == 0:
-                heapq.heappush(minheap, (costs[l], 0) )
-                l+=1
+            t1 = pq1[0] if pq1 else float('inf')
+            t2 = pq2[0] if pq2 else float('inf')
+
+            if t1 <= t2:
+                ans += t1
+                heapq.heappop(pq1)
             else:
-                heapq.heappush(minheap, (costs[r], 1) )
-                r-=1
+                ans += t2
+                heapq.heappop(pq2)
 
-        return res
-
-                
+            k -= 1
+        return ans
