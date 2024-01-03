@@ -4,7 +4,8 @@ class Solution:
         totalBeam= 0
         for floor in bank:
             floorDev = floor.count("1")
-            if(floorDev>0): floorDevs.append(floorDev)
+            if floorDev != 0: 
+                floorDevs.append(floorDev)
         for i in range(len(floorDevs)-1):
             totalBeam += floorDevs[i]*floorDevs[i+1]      
         return totalBeam
