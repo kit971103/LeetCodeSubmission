@@ -4,7 +4,7 @@ class Solution:
         for f in Counter(nums).values():
             if f == 1:
                 return -1
-            res += math.ceil(f/3)
+            res += (f+2)//3
         return res
 
         
