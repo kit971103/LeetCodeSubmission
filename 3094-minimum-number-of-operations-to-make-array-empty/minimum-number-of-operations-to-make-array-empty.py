@@ -5,7 +5,7 @@ class Solution:
         for f in count.values():
             if f == 1:
                 return -1
-            res += (f+2)//3
+            res += math.ceil(f/3)
         return res
 
         
