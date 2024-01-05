@@ -1,0 +1,1 @@
+<h2>longest-increasing-subsequence Notes</h2><hr>73.1, 15.3; WTF why n^2 still faster then 73%? I even used try-except clause
