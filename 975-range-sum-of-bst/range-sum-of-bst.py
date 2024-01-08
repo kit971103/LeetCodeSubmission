@@ -9,19 +9,18 @@ class Solution:
         stack = [root]
         res = 0
         while stack:
+            if stack[-1] is None:
+                stack.pop()
+                continue
             node = stack.pop()
             if low <= node.val <= high:
                 res += node.val
-                if node.left:
-                    stack.append(node.left)
-                if node.right:
-                    stack.append(node.right)
+                stack.append(node.left)
+                stack.append(node.right)
             elif node.val < low:
-                if node.right:
-                    stack.append(node.right)
+                stack.append(node.right)
             else:
-                if node.left:
-                    stack.append(node.left)
+                stack.append(node.left)
         return res
 
         
