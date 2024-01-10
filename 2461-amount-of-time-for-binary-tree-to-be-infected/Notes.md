@@ -1,0 +1,1 @@
+<h2>amount-of-time-for-binary-tree-to-be-infected Notes</h2><hr>99.44, 97.24;
