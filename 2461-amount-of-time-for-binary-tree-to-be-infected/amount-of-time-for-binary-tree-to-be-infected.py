@@ -8,14 +8,11 @@ class Solution:
     def amountOfTime(self, root: Optional[TreeNode], start: int) -> int:
 
         def find_in(node):
-            nonlocal target
-            nonlocal path
             nonlocal found
-
             if not node or found:
                 return
-            
             if node.val == start:
+                nonlocal target
                 target = path.copy()
                 found = True
                 return
@@ -28,7 +25,7 @@ class Solution:
             find_in(node.right)
             path.pop()
 
-        path = ["T"]
+        path = []
         target = None
         found = False
         find_in(root)
@@ -39,14 +36,16 @@ class Solution:
                 return
             
             if not node.left and not node.right:
-                nonlocal res
                 i = 0
                 for a,b in zip(target, path):
                     if a == b: 
                         i+=1
                     else:
                         break
+                
+                nonlocal res
                 res = max(res, len(target) + len(path) - 2*i)
+                return
             
             path.append("L")
             dfs(node.left)
@@ -56,11 +55,11 @@ class Solution:
             dfs(node.right)
             path.pop()
         
-        path = ["T"]
+        path = []
         res=0
         dfs(root)
 
-        return max(res, len(target)-1) #len(target)-1 repersent the depth of start node
+        return max(res, len(target)) #len(target)-1 repersent the depth of start node
 
 
 
