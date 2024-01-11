@@ -20,7 +20,6 @@ class Solution:
             
             nonlocal res
             res = max(abs(node.val-res_min), abs(node.val-res_max), res)
-            print(f"{node.val=}, {res_min=}, {res_max=}, {res=}")
             return (res_min, res_max)
         
         res = 0
