@@ -9,20 +9,18 @@ class Solution:
         def dfs(node):
             if not node.left and not node.right:
                 return (node.val, node.val)
-            elif not node.left:
-                r_min, r_max = dfs(node.right)
-                res_min = min(r_min , node.val)
-                res_max = max(r_max , node.val)
-            elif not node.right:
-                l_min, l_max = dfs(node.left)
-                res_min = min(l_min, node.val)
-                res_max = max(l_max, node.val)
-            else:
-                l_min, l_max = dfs(node.left)
-                r_min, r_max = dfs(node.right)
-                res_min = min(l_min, r_min , node.val)
-                res_max = max(l_max, r_max , node.val)
             
+            res_min = res_max = node.val
+            
+            if node.left:
+                t_min, t_max = dfs(node.left)
+                res_min  =min(res_min, t_min)
+                res_max = max(res_max, t_max)
+            if node.right:
+                t_min, t_max = dfs(node.right)
+                res_min  =min(res_min, t_min)
+                res_max = max(res_max, t_max)
+
             nonlocal res
             res = max(abs(node.val-res_min), abs(node.val-res_max), res)
             return (res_min, res_max)
