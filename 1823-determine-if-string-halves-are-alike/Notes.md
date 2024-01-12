@@ -1,0 +1,1 @@
+<h2>determine-if-string-halves-are-alike Notes</h2><hr>one liner
