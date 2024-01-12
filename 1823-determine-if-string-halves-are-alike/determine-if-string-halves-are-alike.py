@@ -1,6 +1,6 @@
 class Solution:
-    vowels = "aeiouAEIOU"
-    # vowels = {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
+    # vowels = "aeiouAEIOU"
+    vowels = {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}
     def halvesAreAlike(self, s: str) -> bool:
         res = 0
         for c in islice(s, 0, len(s)//2):
