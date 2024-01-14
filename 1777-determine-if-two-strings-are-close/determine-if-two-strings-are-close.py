@@ -1,7 +1,15 @@
 class Solution:
     def closeStrings(self, word1: str, word2: str) -> bool:
-        if len(word1) != len(word2):
-            return False
-        count1 = Counter(word1)
-        count2 = Counter(word2)
-        return sorted(count1.values()) == sorted(count2.values()) and sorted(count1.keys()) == sorted(count2.keys())
+        if len(word1) != len(word2): return False
+        
+        set1=set(word1)
+        set2=set(word2)
+        if set1 != set2: return False
+
+        l1=[]
+        l2=[]
+        for c in set1:
+            l1.append(word1.count(c))
+            l2.append(word2.count(c))
+
+        return sorted(l1) == sorted(l2)
