@@ -6,4 +6,4 @@ class Solution:
         nums[2] += nums[0]
         for i in range(3, len(nums)):
             nums[i] += max(nums[i-3:i-1])
-        return max(nums)
+        return max(nums[-3:])
