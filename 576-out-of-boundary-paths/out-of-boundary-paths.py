@@ -10,15 +10,17 @@ class Solution:
                 res%=MOD
             temp = [[0]*n for _ in range(m)]
             for row, col in product(range(m), range(n)):
+                t=0
                 if row > 0:
-                    temp[row][col] += dp[row-1][col]
+                    t += dp[row-1][col]
                 if row < m-1:
-                    temp[row][col] += dp[row+1][col]
+                   t += dp[row+1][col]
                 if col > 0:
-                    temp[row][col] += dp[row][col-1]
+                    t += dp[row][col-1]
                 if col < n-1:
-                    temp[row][col] += dp[row][col+1]
-                if temp[row][col] > MOD:
-                    temp[row][col]%=MOD 
+                    t += dp[row][col+1]
+                if t > MOD:
+                    t%=MOD 
+                temp[row][col] = t
             dp = temp
         return res
