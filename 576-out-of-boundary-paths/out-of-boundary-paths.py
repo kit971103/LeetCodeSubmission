@@ -18,5 +18,7 @@ class Solution:
                     temp[row][col] += dp[row][col-1]
                 if col < n-1:
                     temp[row][col] += dp[row][col+1]
+                if temp[row][col] > MOD:
+                    temp[row][col]%=MOD 
             dp = temp
         return res
