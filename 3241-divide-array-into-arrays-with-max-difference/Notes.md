@@ -1,0 +1,1 @@
+<h2>divide-array-into-arrays-with-max-difference Notes</h2><hr>93.43, 98.12;
