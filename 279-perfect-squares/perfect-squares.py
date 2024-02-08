@@ -1,10 +1,6 @@
 class Solution:
     def numSquares(self, n: int) -> int:
-        i = 2
-        perfect_squares = [1]
-        while i*i <= n:
-            perfect_squares.append(i*i)
-            i+=1
+        perfect_squares = [i*i for i in range(1,int(math.sqrt(n))+1)]
         bfs = set([0])
         depth = 1
         while True:
