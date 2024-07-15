@@ -1,7 +1,7 @@
 class Solution:
     def secondHighest(self, s: str) -> int:
         res = [None, None]
-        for n in map(int, filter(lambda c: c.isnumeric(), s)):
+        for n in map(int, filter(lambda c: c.isdigit(), s)):
             if n in res:
                 continue
 
