@@ -11,7 +11,6 @@ class Solution:
                 continue
             elif res[1] is None or n > res[1]:
                 res[1] = n
-        print(res)
         return res[1] if res[1] is not None else -1
                 
         
