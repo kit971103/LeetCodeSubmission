@@ -1,20 +1,20 @@
 class Solution:
     def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -> float:
-        def sorce(pass_, total):
+        def heap_key(pass_: int, total: int) -> float:
             return -(total - pass_)/(total*(total+1))
             # return pass_/total
 
-        heap = [[sorce(pass_n, total_n), pass_n, total_n] for pass_n, total_n in classes]
+        heap = [(heap_key(*class_), index) for index, class_ in enumerate(classes)]
         heapq.heapify(heap)
         
         for _ in range(extraStudents):
-            hiest_imporvemtn = heapq.heappop(heap)
-            hiest_imporvemtn[1] += 1
-            hiest_imporvemtn[2] += 1
-            hiest_imporvemtn[0] = sorce(hiest_imporvemtn[1], hiest_imporvemtn[2])
-            heapq.heappush(heap, hiest_imporvemtn)
+            _, class_to_added = heapq.heappop(heap)
+            classes[class_to_added][0] += 1
+            classes[class_to_added][1] += 1
+            heap_item = heap_key(*classes[class_to_added]), class_to_added
+            heapq.heappush(heap, heap_item)
         
-        return sum(pass_/total for _,pass_ ,total in heap)/len(heap)
+        return sum(pass_/total for pass_ ,total in classes)/len(classes)
 
 
 
