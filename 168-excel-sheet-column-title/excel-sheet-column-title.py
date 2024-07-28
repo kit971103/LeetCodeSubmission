@@ -4,14 +4,12 @@ class Solution:
         while columnNumber:
             n = columnNumber%26
             if n:
-                res.append(n)
+                res.append(chr(64 + n))
             else:
-                res.append(26)
+                res.append(chr(90))
                 columnNumber -= 26
             columnNumber //= 26
-        
-        print(res)
-        return ''.join(chr(64 + n) for n in res[::-1])
+        return ''.join(res[::-1])
 
         
         
