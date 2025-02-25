@@ -8,10 +8,12 @@ class Solution:
                 odd += 1
             else:
                 even += 1
-            
             count += odd
-            if count > MOD:
-                count = count%MOD
+
+            count %= MOD
+            odd %= MOD
+            even %= MOD
+
         return count
             
 
