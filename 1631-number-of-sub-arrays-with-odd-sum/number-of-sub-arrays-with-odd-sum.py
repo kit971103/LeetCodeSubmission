@@ -10,10 +10,6 @@ class Solution:
                 even += 1
             count += odd
 
-            count %= MOD
-            odd %= MOD
-            even %= MOD
-
-        return count
+        return count%MOD
             
 
