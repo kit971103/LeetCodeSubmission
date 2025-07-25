@@ -16,6 +16,8 @@ class Solution:
                 else:
                     stack.append(c)
             else:
+                if not stack:
+                    continue
                 total += min(stack.count("a"), stack.count("b")) * min(x, y)
                 stack.clear()
         total += min(stack.count("a"), stack.count("b")) * min(x, y)
