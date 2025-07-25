@@ -16,20 +16,8 @@ class Solution:
                 else:
                     stack.append(c)
             else:
-                #clear the stack as it cant connectto others
-                if not stack:
-                    continue
-                if x >= y:
-                    # all "ab" should have been handeled above, only handle "ba" here
-                    total += y * min(stack.count("a"), stack.count("b"))
-                else:
-                    total += x * min(stack.count("a"), stack.count("b"))
+                total += min(stack.count("a"), stack.count("b")) * min(x, y)
                 stack.clear()
-        if x >= y:
-            # all "ab" should have been handeled above, only handle "ba" here
-            total += y * min(stack.count("a"), stack.count("b"))
-        else:
-            total += x * min(stack.count("a"), stack.count("b"))
-
+        total += min(stack.count("a"), stack.count("b")) * min(x, y)
 
         return total
