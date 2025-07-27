@@ -5,8 +5,8 @@ class Solution:
         for mid, right in itertools.pairwise(nums[1:]):
             if (mid > left and mid > right) or (mid < left and mid < right):
                 total += 1
-
-            left = mid if mid != right else left
+            if mid != right:
+                left = mid
         return total
 
 
