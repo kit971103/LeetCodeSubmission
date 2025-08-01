@@ -1,10 +1,12 @@
 class Solution:
-    def generate(self, numRows: int) -> List[List[int]]:
-        ans = [[1]]
-        for _ in range(numRows-1):
-            this = [1]
-            for a,b in itertools.pairwise(ans[-1]):
-                this.append(a+b)
-            this.append(1)
-            ans.append(this)
-        return ans
+    def generate(self, numRows):
+        pas=[[] for i in range(numRows)]
+
+        for i in range(numRows):
+            pas[i]=[[] for j in range(i+1)]
+            for j in range(i+1):
+                if j==0 or j==i:
+                    pas[i][j]=1
+                else: 
+                    pas[i][j]=pas[i-1][j-1]+pas[i-1][j]
+        return pas
