@@ -1,76 +1,32 @@
+# NOTE: its after checking other solution, and rewrite with my own logic and commnet
 class Robot:
 
     def __init__(self, width: int, height: int):
-        self.direction: str = "East"
-        self.x, self.y = 0, 0
-        self.w, self.h = width - 1, height - 1
-        self.cycle_size = 2 * (self.w + self.h)  # step takes for one cycle
+        # as the robot must follow a cirle path, so it state can be repersent by a path with an index
+        # list[(x, y, direction)]
+        self.path: list[tuple[int, int, str]] = []
+        self.path.extend((x, 0, "East") for x in range(width)) # <--- [0,0,"East"]
+        self.path.extend((width - 1, y, "North") for y in range(1, height))
+        self.path.extend((x, height - 1, "West") for x in range(width - 2, -1, -1))
+        self.path.extend((0, y, "South") for y in range(height - 2, 0, -1))
+
+        self.path_length = len(self.path)
+        self.steps = 0
+        self.index = 0
 
     def step(self, num: int) -> None:
-        # remove the cycle move
-        num %= self.cycle_size
-        # handle special facing:
-        if any(
-            [
-                self.direction == "North" and (self.x, self.y) == (self.w, 0),
-                self.direction == "East" and (self.x, self.y) == (0, 0),
-                self.direction == "South" and (self.x, self.y) == (0, self.h),
-                self.direction == "West" and (self.x, self.y) == (self.w, self.h),
-            ]
-        ):
-            self._turn()
-            self._turn()
-            self._turn()
-
-        # walk along the wall
-        while num > 0:
-            if self._facing_wall():
-                self._turn()
-            walked = self._walk(num)
-            num -= walked
+        self.steps += num
+        self.index = self.steps % self.path_length
 
     def getPos(self) -> List[int]:
-        return [self.x, self.y]
+        return self.path[self.index][0:2]
 
     def getDir(self) -> str:
-        return self.direction
+        if self.index == 0 and self.steps != 0:
+            # special case for initial direction, if moved(steps != 0) and index == 0, should be South
+            return "South"
+        return self.path[self.index][2]
 
-    # ------------------- intyernal helper ------------------------------
-    def _facing_wall(self) -> bool:
-        # NOTE: use >= for unexpted out of bound
-        return any(
-            [
-                self.direction == "North" and self.y >= self.h,
-                self.direction == "East" and self.x >= self.w,
-                self.direction == "South" and self.y <= 0,
-                self.direction == "West" and self.x <= 0,
-            ]
-        )
-
-    def _walk(self, step: int) -> int:
-        if self.direction == "East":
-            walked = min(step, self.w - self.x)
-            self.x += walked
-        elif self.direction == "North":
-            walked = min(step, self.h - self.y)
-            self.y += walked
-        elif self.direction == "West":
-            walked = min(step, self.x)
-            self.x -= walked
-        else:
-            walked = min(step, self.y)
-            self.y -= walked
-        return walked
-
-    def _turn(self) -> None:
-        if self.direction == "East":
-            self.direction = "North"
-        elif self.direction == "North":
-            self.direction = "West"
-        elif self.direction == "West":
-            self.direction = "South"
-        else:
-            self.direction = "East"
 
 
 # Your Robot object will be instantiated and called as such:
