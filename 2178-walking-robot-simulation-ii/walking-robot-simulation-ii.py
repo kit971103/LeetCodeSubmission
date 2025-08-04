@@ -6,10 +6,10 @@ class Robot:
         self.w, self.h = width - 1, height - 1
         self.cycle_size = 2 * (self.w + self.h)  # step takes for one cycle
         assert self.cycle_size > 0
-        print(f"Init: {self.w, self.h}")
+        # print(f"Init: {self.w, self.h}")
 
     def step(self, num: int) -> None:
-        print(f"Step: {num}")
+        # print(f"Step: {num}")
         # remove the cycle move
         num %= self.cycle_size
         # handle special facing:
@@ -27,19 +27,19 @@ class Robot:
 
         # walk along the wall
         while num > 0:
-            print(f"\tpos={self.x, self.y}, dir={self.direction}")
+            # print(f"\tpos={self.x, self.y}, dir={self.direction}")
             if self._facing_wall():
                 self._turn()
             walked = self._walk(num)
             num -= walked
-        print(f"\t-->Stop at {self.x, self.y} @{self.direction}")
+        # print(f"\t-->Stop at {self.x, self.y} @{self.direction}")
 
     def getPos(self) -> List[int]:
-        print(f"getPos: {self.x, self.y}")
+        # print(f"getPos: {self.x, self.y}")
         return [self.x, self.y]
 
     def getDir(self) -> str:
-        print(f"getDir: {self.direction}")
+        # print(f"getDir: {self.direction}")
         return self.direction
 
     # ------------------- intyernal helper ------------------------------
