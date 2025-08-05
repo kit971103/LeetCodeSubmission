@@ -1,31 +1,33 @@
-class Solution(object):
-    def compress(self, chars):
+class Solution:
+    def compress(self, chars: List[str]) -> int:
+        count = 0
+        compress_len = 0
+        repeat = chars[0]
 
-        rep= chars[0]
-        n= 1
-        m= 0
-
-        for i in range(1, len(chars)):
-            c = chars[i]
-            if c == rep: 
-                n += 1
+        for i, c in enumerate(chars):
+            if c == repeat:
+                count += 1
             else:
-                chars[m] = rep
-                m+=1
-                if n > 1:
-                    n= str(n)
-                    chars[ m: m + len(n) ] = n
-                    m += len(n)
-                rep=c
-                n = 1
-            # print(chars)
+                # write the letter
+                chars[compress_len] = repeat
+                compress_len += 1
+
+                if count > 1:
+                    count_str = str(count)
+                    chars[compress_len : compress_len + len(count_str)] = count_str
+                    compress_len += len(count_str)
+                # reset counting
+                start = i
+                repeat = c
+                count = 1
         else:
-            chars[m] = rep
-            m+=1
-            if n > 1:
-                n= str(n)
-                chars[ m: m + len(n) ] = n
-                m += len(n)
-        # print(chars)
-        return m
-        
+            # write the letter
+            chars[compress_len] = repeat
+            compress_len += 1
+            if count > 1:
+                count_str = str(count)
+                chars[compress_len : compress_len + len(count_str)] = count_str
+                compress_len += len(count_str)
+
+
+        return compress_len
